@@ -48,10 +48,10 @@ fi
 
 # Edit the following to change the name of the database user that will be created:
 APP_DB_USER=vagrant
-APP_DB_PASS=sreegsahuj9
+APP_DB_PASS=dev
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
-APP_DB_NAME=veganarium
+APP_DB_NAME=appname
 
 # Edit the following to change the version of PostgreSQL that is installed
 PG_VERSION=9.3
