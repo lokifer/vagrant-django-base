@@ -2,7 +2,8 @@
 
 # Script to set up dependencies for Django on Vagrant.
 
-PGSQL_VERSION=9.3
+# Edit the following to change the version of PostgreSQL that is installed
+PG_VERSION=9.3
 
 # Need to fix locale so that Postgres creates databases in UTF-8
 cp -p /vagrant_data/etc-bash.bashrc /etc/bash.bashrc
@@ -24,8 +25,8 @@ apt-get install -y git
 
 # Postgresql
 if ! command -v psql; then
-    apt-get install -y postgresql-$PGSQL_VERSION libpq-dev
-    cp /vagrant_data/pg_hba.conf /etc/postgresql/$PGSQL_VERSION/main/
+    apt-get install -y postgresql-$PG_VERSION libpq-dev
+    cp /vagrant_data/pg_hba.conf /etc/postgresql/$PG_VERSION/main/
     /etc/init.d/postgresql reload
 fi
 # Install virtualenv etc
@@ -52,9 +53,6 @@ APP_DB_PASS=dev
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
 APP_DB_NAME=appname
-
-# Edit the following to change the version of PostgreSQL that is installed
-PG_VERSION=9.3
 
 ###########################################################
 # Changes below this line are probably not necessary
@@ -90,6 +88,7 @@ if [ -f "$PROVISIONED_ON" ]
 then
   echo "VM was already provisioned at: $(cat $PROVISIONED_ON)"
   echo "To run system updates manually login via 'vagrant ssh' and run 'apt-get update && apt-get upgrade'"
+  echo "To re-provision, rm /etc/vm/vm_provision_on_timestamp"
   echo ""
   print_db_usage
   exit

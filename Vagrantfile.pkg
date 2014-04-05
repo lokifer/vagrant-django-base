@@ -1,3 +1,0 @@
-Vagrant::Config.run do |config|
-#  config.vm.forward_port("runserver", 8000, 8111)
-end
